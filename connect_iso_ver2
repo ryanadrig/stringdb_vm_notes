@@ -1,0 +1,11 @@
+#!/bin/sh
+qemu-system-x86_64 \
+  -m 4096 \
+  -enable-kvm \
+  -cpu host \
+  -smp 2 \
+  -hda sdb_disk.qcow2 \
+  -netdev user,id=n1,hostfwd=tcp::2222-:22 \
+  -device e1000,netdev=n1
+  -boot c
+

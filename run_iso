@@ -1,0 +1,10 @@
+#!/bin/sh
+qemu-system-x86_64 \
+  -m 4096 \
+  -cdrom CentOS-Stream-Image-MIN-Live.x86_64-9-202501111101.iso \
+  -boot d \
+  -enable-kvm \
+  -cpu host \
+  -smp 2 \
+  -hda sdb_disk.qcow2
+

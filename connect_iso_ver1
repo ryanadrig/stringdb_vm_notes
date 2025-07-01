@@ -1,0 +1,9 @@
+#!/bin/sh
+qemu-system-x86_64 \
+  -m 4096 \
+  -enable-kvm \
+  -cpu host \
+  -smp 2 \
+  -hda sdb_disk.qcow2 \
+  -boot c
+

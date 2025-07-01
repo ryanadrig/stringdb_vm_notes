@@ -1,0 +1,1 @@
+qemu-img create -f qcow2 sdb_disk.qcow2 20G

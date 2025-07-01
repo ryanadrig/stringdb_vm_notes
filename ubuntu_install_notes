@@ -1,0 +1,46 @@
+
+tried: pipe STARTUP through cpio to same directory
+  root@si:/home/si/universe# cat STARTUP | cpio -idmv
+
+actually pipe all through cpio
+  cat MAIN DOC IC NLS SYSLIB QA DEVELOP UCI GCI FILESIZE PORTING CVTB UVODBC XD | cpio -idmv
+
+install rpm
+  apt-get install rpm
+
+"Missing required library, please install the 'libnsl' package."
+  tried: LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu
+  tried: ln -s /lib/x86_64-linux-gnu/libnsl.so.1 /usr/lib/libnsl.so.1
+  use strace:
+   strace ./uv.load 2>&1 | grep libnsl
+   newfstatat(AT_FDCWD, "/lib64/libnsl.so.1", 0x7ffd63c80520, 0) = -1 ENOENT (No such file or directory)
+   newfstatat(AT_FDCWD, "/lib64/libnsl.so.1", 0x7ffd63c80520, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+ 
+  fix: ln -s /lib/x86_64-linux-gnu/libnsl.so.1 /lib64/libnsl.so.1
+
+
+install options
+  License files are located in the installation directory /usr/uv/license by default.
+
+                        UniVerse Installation Options
+
+The current settings of the available options are:
+
+   UniVerse installer    : root
+   UniVerse administrator: root  uid=0  gid=0
+
+1) UniVerse home directory:           /usr/uv
+                                      (currently: Not Installed.)
+2) UniVerse-UniData shared directory: /usr/unishared
+                                      (currently: Not Installed.)
+3) Compile terminfo definitions:      true
+4) Install media path:                /home/si/universe_src
+5) Long File Names:                   OFF
+6) Install XDEMO Account:             Yes
+
+The user 'uvsql' does not exist. This user is the default owner of the
+SQL catalog. Would you like to:
+
+1). Continue with the installation, making 'root' the default owner
+    of the SQL catalog.
+
